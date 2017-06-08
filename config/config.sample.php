@@ -1559,4 +1559,8 @@ $CONFIG = array(
  */
 'gs.federation' => 'internal',
 
+/**
+ * send out invitations via Nextcloud's integrated CalDAV server
+ */
+'caldav_send_invitations' => true,
 );

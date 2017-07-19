@@ -227,7 +227,7 @@ abstract class Controller {
 	 * Shortcut for getting cookie variables
 	 * @deprecated 7.0.0 use $this->request instead
 	 * @param string $key the key that will be taken from the $_COOKIE array
-	 * @return array the value in the $_COOKIE element
+	 * @return string the value in the $_COOKIE element
 	 * @since 6.0.0
 	 */
 	public function cookie($key) {

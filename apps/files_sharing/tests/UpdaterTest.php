@@ -69,7 +69,7 @@ class UpdaterTest extends TestCase {
 	 * points should be unshared before the folder gets deleted so
 	 * that the mount point doesn't end up at the trash bin
 	 */
-	function testDeleteParentFolder() {
+	public function testDeleteParentFolder() {
 		$status = \OC_App::isEnabled('files_trashbin');
 		(new \OC_App())->enable('files_trashbin');
 
@@ -93,7 +93,7 @@ class UpdaterTest extends TestCase {
 		// check if user2 can see the shared folder
 		$this->assertTrue($view->file_exists($this->folder));
 
-		$foldersShared = \OCP\Share::getItemsSharedWith('folder');
+		$foldersShared = $this->shareManager->getSharedWith(self::TEST_FILES_SHARING_API_USER2, \OCP\Share::SHARE_TYPE_USER);
 		$this->assertSame(1, count($foldersShared));
 
 		$view->mkdir("localFolder");
@@ -110,7 +110,7 @@ class UpdaterTest extends TestCase {
 		$this->loginHelper(self::TEST_FILES_SHARING_API_USER2);
 
 		// shared folder should be unshared
-		$foldersShared = \OCP\Share::getItemsSharedWith('folder');
+		$foldersShared = $this->shareManager->getSharedWith(self::TEST_FILES_SHARING_API_USER2, \OCP\Share::SHARE_TYPE_USER);
 		$this->assertTrue(empty($foldersShared));
 
 		// trashbin should contain the local file but not the mount point
